@@ -6,19 +6,22 @@ const Item=mongoose.model("Item")
 const router=express.Router()
 
 router.post('/additem',(req,res)=>{
-    const {name,calories,protein,carbs,fat}=req.body
+    const {name,calories,protein,carbs,fat,itemWeight}=req.body
+    
     const item=new Item({
       name,
       calories,
       protein,
       carbs,
-      fat
+      fat,
+      itemWeight
     })
     item.save()
-    .then(post=>{
+    .then(item=>{
         res.json({message:"saved successfully"})
     })
     .catch(err=>{
         console.log(err);
     })
 })
+module.exports=router

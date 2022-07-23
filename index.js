@@ -18,6 +18,16 @@ mongoose.connection.on('connected',()=>{
 mongoose.connection.on('error',(err)=>{
     console.log("err connecting",err)
 })
+require('./models/food_item')
+require('./models/meal')
+require('./models/user')
+
+app.use(express.json())
+app.use(require('./routes/user'))
+
+
+
+
 app.get('/', (req, res) => {
   res.send('hello world')
 })

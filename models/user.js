@@ -12,7 +12,7 @@ const userSchema=new mongoose.Schema({
     mealPlan:[{
         date:Date,
         MealPlans:[{
-            type: Schema.Types.ObjectId,
+            type: schema.Types.ObjectId,
             ref: "Meal" 
         }],
     }]

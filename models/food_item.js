@@ -22,7 +22,7 @@ const itemSchema=new mongoose.Schema({
     required:true 
    },
    acceptedUnits:{
-    type:string,
+    type:String,
     enum:['ml','liter','kg','g','item'],
     default:'g',
     required: true
