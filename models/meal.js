@@ -19,7 +19,8 @@ const MealSchema=new mongoose.Schema({
     },
     foodItems:[{
         type: Schema.Types.ObjectId,
-        ref: "Item" 
+        ref: "Item" ,
+        required:true
     }],
     
 

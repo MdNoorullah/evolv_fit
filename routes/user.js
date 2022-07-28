@@ -1,27 +1,26 @@
-
-const express = require('express')
+const express = require("express");
+const router = express.Router();
 const mongoose  = require('mongoose')
+ const Meal=mongoose.model("Meal");
+const User = mongoose.model("User");
 
-const Item=mongoose.model("Item")
-const router=express.Router()
-
-router.post('/additem',(req,res)=>{
-    const {name,calories,protein,carbs,fat,itemWeight}=req.body
-    
-    const item=new Item({
-      name,
-      calories,
-      protein,
-      carbs,
-      fat,
-      itemWeight
-    })
-    item.save()
-    .then(item=>{
-        res.json({message:"saved successfully"})
-    })
-    .catch(err=>{
-        console.log(err);
-    })
+router.post("/add_user", async (req, res) => {
+  
+  const {name, calorieRequirement,mealPlan} = req.body;
+    let data = await Meal.find({ name: mealPlan });
+  console.log(data);
+  const user = new User({
+    name ,
+    calorieRequirement,
+    mealPlan : data
+  })
+  await user.save()
+  .then(user=>{
+    res.json({message:"User details saved successfully"})
 })
-module.exports=router
+.catch(err=>{
+    console.log(err);
+})
+})
+
+module.exports = router;
